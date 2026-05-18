@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  username      String    @unique
+  email         String    @unique
+  password_hash String
+  avatar        String?
+  join_date     DateTime  @default(now())
+  preferences   Json?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  sessions      Session[]
+  rooms         Room[]
+  roomParticipants RoomParticipant[]
+  watchHistory  WatchHistory[]
+
+  @@map("users")
+}
+
+model Room {
+  id            String    @id @default(uuid())
+  room_code     String    @unique
+  creator_id    String
+  video_url     String?
+  video_title   String?
+  created_at    DateTime  @default(now())
+  expires_at    DateTime?
+  is_active     Boolean   @default(true)
+  participants_count Int   @default(0)
+
+  creator       User      @relation(fields: [creator_id], references: [id])
+  participants  RoomParticipant[]
+
+  @@map("rooms")
+}
+
+model RoomParticipant {
+  id          String    @id @default(uuid())
+  room_id     String
+  user_id     String
+  joined_at   DateTime  @default(now())
+  left_at     DateTime?
+  is_active   Boolean   @default(true)
+
+  room        Room      @relation(fields: [room_id], references: [id])
+  user        User      @relation(fields: [user_id], references: [id])
+
+  @@unique([room_id, user_id])
+  @@map("room_participants")
+}
+
+model WatchHistory {
+  id            String    @id @default(uuid())
+  user_id       String
+  video_url     String
+  video_title   String?
+  watched_at    DateTime  @default(now())
+  room_id       String?
+  duration_watched Int     @default(0)
+
+  user          User      @relation(fields: [user_id], references: [id])
+
+  @@map("watch_history")
+}
+
+model Session {
+  id          String    @id @default(uuid())
+  user_id     String
+  token       String    @unique
+  created_at  DateTime  @default(now())
+  expires_at  DateTime
+
+  user        User      @relation(fields: [user_id], references: [id])
+
+  @@map("sessions")
+}

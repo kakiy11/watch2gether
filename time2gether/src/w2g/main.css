@@ -1,0 +1,589 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #667eea;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.dropdown-menu button:hover {
+  background: #f0f0f0;
+  color: #667eea;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* User Menu Styles */
+.user-dropdown {
+  position: relative;
+}
+
+.user-menu-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.user-menu {
+  right: 0;
+  left: auto;
+  min-width: 220px;
+}
+
+.user-info {
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.user-info strong {
+  display: block;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.user-info small {
+  display: block;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.user-menu hr {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.logout-menu-item {
+  color: #dc3545 !important;
+}
+
+.logout-menu-item:hover {
+  background: #fee !important;
+}
+
+/* Sign In Button (for non-authenticated users) */
+.sign-in-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+.create-room-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.create-room-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.create-room-btn:active {
+  transform: translateY(0);
+}
+
+/* Room Created Styles */
+.room-created {
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.room-title {
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.room-link-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.room-link-input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  width: 400px;
+  background: white;
+  cursor: pointer;
+}
+
+.copy-btn, .share-btn, .create-another-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.copy-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.share-btn {
+  background: #2196f3;
+  color: white;
+  margin-right: 1rem;
+}
+
+.share-btn:hover {
+  background: #1976d2;
+  transform: translateY(-2px);
+}
+
+.create-another-btn {
+  background: #ff9800;
+  color: white;
+}
+
+.create-another-btn:hover {
+  background: #f57c00;
+  transform: translateY(-2px);
+}
+
+/* Steps Section Styles */
+.steps-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.step-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  min-width: 150px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #667eea;
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .room-link-input {
+    width: 250px;
+    font-size: 0.9rem;
+  }
+
+  .steps-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .step-card {
+    width: 200px;
+  }
+
+  .create-room-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .room-title {
+    font-size: 1.5rem;
+  }
+
+  .user-menu-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .user-menu {
+    min-width: 200px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .room-link-container {
+    flex-direction: column;
+  }
+
+  .room-link-input {
+    width: 100%;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-menu-btn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .user-info strong {
+    font-size: 0.9rem;
+  }
+
+  .user-info small {
+    font-size: 0.7rem;
+  }
+}
+
+/* Animation for user menu */
+.user-menu {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional hover effects */
+.user-menu-btn:active {
+  transform: translateY(0);
+}
+
+/* Style for the divider in user menu */
+.user-menu hr {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+/* Дополнительные стили для комнаты */
+.room-id-info {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.room-id-info strong {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+.room-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.video-url-input-container {
+  margin: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-url-input {
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  width: 450px;
+  background: white;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.video-url-input:focus {
+  outline: none;
+  border-color: #764ba2;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.video-url-input::placeholder {
+  color: #999;
+}
+
+.watch-btn {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.watch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+}
+
+.room-link-input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  width: 400px;
+  background: white;
+  cursor: pointer;
+  color: #333;
+}
+
+.room-link-input:focus {
+  outline: none;
+  border-color: #764ba2;
+}
+
+.copy-btn, .share-btn, .create-another-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.copy-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.share-btn {
+  background: #2196f3;
+  color: white;
+}
+
+.share-btn:hover {
+  background: #1976d2;
+  transform: translateY(-2px);
+}
+
+.create-another-btn {
+  background: #ff9800;
+  color: white;
+}
+
+.create-another-btn:hover {
+  background: #f57c00;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .video-url-input {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .watch-btn {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .video-url-input-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .room-link-input {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .room-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .copy-btn, .share-btn, .create-another-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+/* Improve mobile touch targets */
+@media (max-width: 768px) {
+  .dropdown-menu button,
+  .user-menu-btn,
+  .sign-in-btn {
+    min-height: 44px;
+  }
+}
