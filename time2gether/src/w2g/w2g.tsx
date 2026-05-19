@@ -10,7 +10,6 @@ const Main: React.FC = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [roomCreated, setRoomCreated] = useState(false);
   const [roomId, setRoomId] = useState("");
-  const [roomLink, setRoomLink] = useState("");
   const [showPlayer, setShowPlayer] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
   const [videoInputUrl, setVideoInputUrl] = useState("");
@@ -54,10 +53,8 @@ const Main: React.FC = () => {
   const handleCreateRoom = (): void => {
     const newRoomId = generateRoomId();
     setRoomId(newRoomId);
-    const newLink = `${window.location.origin}/room/${newRoomId}`;
-    setRoomLink(newLink);
     setRoomCreated(true);
-    console.log("Room created:", newLink);
+    console.log("Room created:", `${window.location.origin}/room/${newRoomId}`);
   };
 
   const handleStartWatching = () => {
@@ -170,7 +167,6 @@ const Main: React.FC = () => {
   const handleCreateAnotherRoom = (): void => {
     setRoomCreated(false);
     setRoomId("");
-    setRoomLink("");
     setVideoInputUrl("");
     setCurrentVideoUrl("");
     setShowPlayer(false);
