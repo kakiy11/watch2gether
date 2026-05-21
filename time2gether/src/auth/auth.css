@@ -1,511 +1,123 @@
-* {
-  margin: 0;
-  padding: 0;
+/* auth.css — стили для страниц входа и регистрации */
+
+.auth-page,
+.register-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.auth-form,
+.register-form {
+  background: white;
+  padding: 40px 35px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.4s ease;
+}
+
+.auth-form h2,
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 28px;
+  color: #1a1a2e;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.auth-form input,
+.register-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s;
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-}
-
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Header Styles */
-.header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.2;
-}
-
-.nav {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  cursor: pointer;
-  background: transparent;
-}
-
-.nav-link:hover {
-  color: #667eea;
-}
-
-.nav-dropdown {
-  position: relative;
-}
-
-/* Исправление для выпадающих меню */
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  min-width: 180px;
-  margin-top: 0.5rem;
-  overflow: visible;
-  z-index: 1001;
-  opacity: 1;
-  visibility: visible;
-  display: block;
-}
-
-.dropdown-menu button {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: none;
-  background: white;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 0.9rem;
-  color: #333;
-  display: block;
-}
-
-.dropdown-menu button:hover {
-  background: #f0f0f0;
-  color: #667eea;
-}
-
-/* User Menu Styles */
-.user-dropdown {
-  position: relative;
-}
-
-.user-menu-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-
-.user-menu-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.user-menu {
-  right: 0;
-  left: auto;
-  min-width: 220px;
-}
-
-.user-info {
-  padding: 0.75rem 1rem;
-  text-align: center;
-  background: white;
-}
-
-.user-info strong {
-  display: block;
-  color: #333;
-  margin-bottom: 0.25rem;
-}
-
-.user-info small {
-  display: block;
-  color: #666;
-  font-size: 0.8rem;
-}
-
-.user-menu hr {
-  margin: 0.5rem 0;
-  border: none;
-  border-top: 1px solid #eee;
-}
-
-.logout-menu-item {
-  color: #dc3545 !important;
-}
-
-.logout-menu-item:hover {
-  background: #fee !important;
-}
-
-/* Sign In Button */
-.sign-in-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sign-in-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* Main Content Styles */
-.main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 2rem;
-  min-height: 400px;
-}
-
-.create-room-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1.5rem 3rem;
-  border-radius: 50px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  display: inline-block;
-}
-
-.create-room-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.create-room-btn:active {
-  transform: translateY(0);
-}
-
-/* Room Created Styles */
-.room-created {
-  text-align: center;
-  animation: fadeIn 0.5s ease;
-  background: transparent;
-  padding: 2rem;
-  border-radius: 20px;
-}
-
-.room-title {
-  color: white;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.room-link-container {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.room-link-input {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 2px solid #667eea;
-  border-radius: 8px;
-  width: 400px;
-  background: white;
-  cursor: pointer;
-  color: #333;
-}
-
-.room-link-input:focus {
+.auth-form input:focus,
+.register-form input:focus {
   outline: none;
-  border-color: #764ba2;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.copy-btn, .share-btn, .create-another-btn {
-  padding: 0.75rem 1.5rem;
+.auth-form button,
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.copy-btn {
-  background: #4caf50;
-  color: white;
-}
-
-.copy-btn:hover {
-  background: #45a049;
+.auth-form button:hover,
+.register-form button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-.share-btn {
-  background: #2196f3;
-  color: white;
-  margin-right: 1rem;
+.auth-form button:disabled,
+.register-form button:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: not-allowed;
 }
 
-.share-btn:hover {
-  background: #1976d2;
-  transform: translateY(-2px);
-}
-
-.create-another-btn {
-  background: #ff9800;
-  color: white;
-}
-
-.create-another-btn:hover {
-  background: #f57c00;
-  transform: translateY(-2px);
-}
-
-/* Steps Section Styles */
-.steps-section {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  flex-wrap: wrap;
-}
-
-.step-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
+.auth-form p,
+.register-form p {
   text-align: center;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #333;
-  min-width: 150px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
 }
 
-.step-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.step-number {
-  font-size: 2rem;
-  font-weight: bold;
+.auth-form a,
+.register-form a {
   color: #667eea;
-  margin-right: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-/* Animations */
+.auth-form a:hover,
+.register-form a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background: #ffe0e0;
+  color: #d32f2f;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+  border-left: 3px solid #d32f2f;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .nav {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .room-link-input {
-    width: 250px;
-    font-size: 0.9rem;
-  }
-
-  .steps-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .step-card {
-    width: 200px;
-  }
-
-  .create-room-btn {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-  }
-
-  .room-title {
-    font-size: 1.5rem;
-  }
-
-  .user-menu-btn {
-    padding: 0.4rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .user-menu {
-    min-width: 200px;
-    right: -10px;
-  }
-
-  .room-link-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .share-btn {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .room-link-input {
-    width: 100%;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .user-menu-btn {
-    padding: 0.35rem 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  .user-info strong {
-    font-size: 0.9rem;
-  }
-
-  .user-info small {
-    font-size: 0.7rem;
-  }
-
-  .create-room-btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .copy-btn, .share-btn, .create-another-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Fix для белых полосок */
-.dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 20px;
-  width: 10px;
-  height: 10px;
-  background: white;
-  transform: rotate(45deg);
-  display: none;
-}
-
-/* Убираем возможные белые полосы */
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.app-container {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Улучшение видимости кнопок */
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Фикс для невидимых элементов */
-.nav-dropdown:hover .dropdown-menu,
-.user-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-/* Гарантия видимости текста */
-.room-link-input,
-.copy-btn,
-.share-btn,
-.create-another-btn,
-.create-room-btn,
-.user-menu-btn,
-.sign-in-btn {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Дополнительный фикс для мобильных */
-@media (max-width: 768px) {
-  .dropdown-menu {
-    position: fixed;
-    top: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 300px;
-    margin-top: 0.5rem;
-  }
-  
-  .user-menu {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  
-  .dropdown-menu::before {
-    display: none;
   }
 }
